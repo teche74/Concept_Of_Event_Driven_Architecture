@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Order Site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/interface.css') }}" />
+</head>
+
+<body>
+    <header>
+        <h1>Healthy Store</h1>
+    </header>
+
+    <main class="product-list">
+        <div class="product-card">
+            <figure>
+                <img src="{{url_for('static' , filename = 'images/bar.png')}}" alt="">
+            </figure>
+            <h2>Protein Bar</h2>
+            <p>High protein, low sugar.</p>
+            <p>Price : <span class = "bar_price">50</span></p>
+            <label for="bar_quantity">Quantity : </label>
+            <input type="number" id = "bar_quantity" name="bar_quantity" min="1" max="10" value="1">
+            <button onclick="placeOrder('Protein Bar')">Place Order</button>
+        </div>
+        <div class="product-card">
+            <figure>
+                <img src="{{url_for('static' , filename = 'images/smoothie.png')}}" alt="">
+            </figure>
+            <h2>Smoothie</h2>
+            <p>Full of vitamins and fiber.</p>
+            <p>Price : <span class = "smooth_price">50</span></p>
+            <label for="smooth_quantity">Quantity : </label>
+            <input type="number" id = "smooth_quantity" name="smooth_quantity" min="1" max="10" value="1">
+            <button onclick="placeOrder('Smoothie')">Place Order</button>
+        </div>
+        <div class="product-card">
+            <figure>
+                <img src="{{url_for('static' , filename = 'images/energy_bite.png')}}" alt="">
+            <h2>Energy Balls</h2>
+            <p>Perfect for pre-workout snacks.</p>
+            <p>Price : <span class = "balls_price">50</span></p>
+            <label for="balls_quantity">Quantity : </label>
+            <input type="number" id = "balls_quantity" name="balls_quantity" min="1" max="10" value="1">
+            <button onclick="placeOrder('Energy Balls')">Place Order</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Healthy Store</p>
+    </footer>
+
+    <script src="{{url_for('static' , filename = 'js/interface.js')}}"></script>
+</body>
+
+</html>

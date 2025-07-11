@@ -1,0 +1,11 @@
+{
+    "Protein Bar": {
+        "stock": 100
+    },
+    "Smoothie": {
+        "stock": 80
+    },
+    "Energy Balls": {
+        "stock": 60
+    }
+}
