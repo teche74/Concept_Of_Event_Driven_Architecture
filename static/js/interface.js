@@ -1,32 +1,42 @@
-function placeOrder(productName) {
-    let quantity = 1, price = 0; 
-    
-    if(productName === 'Protein Bar') {
-        quantity = parseInt(document.getElementById('bar_quantity').value);
-        price = parseInt(document.getElementById('bar_price').value);
+function placeOrder(productName, event) {
+    const button = event.target;
+
+    const card = button.closest('.product-card');
+    const quantityInput = card.querySelector('input[type="number"]');
+    const priceSpan = card.querySelector('span');
+
+    if (!quantityInput || !priceSpan) {
+        alert("Missing input or price field.");
+        return;
     }
-    else if(productName === 'Smoothie') {
-        quantity = parseInt(document.getElementById('smooth_quantity').value);
-        price = parseInt(document.getElementById('smooth_price').value);
+
+    const quantity = parseInt(quantityInput.value);
+    const price = parseInt(priceSpan.textContent);
+
+    if (isNaN(quantity) || isNaN(price)) {
+        alert("Invalid quantity or price.");
+        return;
     }
-    else if(productName === 'Energy Balls') {
-        quantity = parseInt(document.getElementById('balls_quantity').value);
-        price = parseInt(document.getElementById('balls_price').value);
-    }
-    
+
+    const payload = {
+        product: productName,
+        item_count: quantity,
+        total_cost: quantity * price
+    };
+
     fetch('/order', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ product: productName , item_count : quantity , total_cost : quantity * price })
+        body: JSON.stringify(payload)
     })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-        })
-        .catch(err => {
-            alert("Failed to place order.");
-            console.error(err);
-        });
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(err => {
+        alert("Failed to place order.");
+        console.error(err);
+    });
 }

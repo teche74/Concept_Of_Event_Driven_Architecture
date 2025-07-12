@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import requests
+import time
 
 app = Flask(__name__)
 
@@ -7,6 +8,7 @@ app = Flask(__name__)
 # --- SERVICE CALLS ---
 def update_inventory(product, quantity):
     try:
+        print("makeing request :")
         res = requests.post("http://localhost:5001/update_inventory", json={
             "product": product,
             "quantity": quantity
@@ -39,6 +41,16 @@ def create_invoice(product, total_cost):
         return False
 
 
+def retry_request(url, payload, retries=3, delay=1):
+    for _ in range(retries):
+        try:
+            res = requests.post(url, json=payload, timeout=3)
+            if res.ok:
+                return True
+        except Exception as e:
+            print(f"Retry failed: {e}")
+        time.sleep(delay)
+    return False
 
 # --- MAIN ORDER ENDPOINT ---
 @app.route("/order", methods=["POST"])
@@ -47,7 +59,8 @@ def order():
     product = data.get("product")
     quantity = data.get("item_count")
     total_cost = data.get("total_cost")
-
+    
+    
     inv_status = update_inventory(product, quantity)
     if not inv_status:
         return jsonify({"message": "Inventory update failed"}), 500

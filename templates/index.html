@@ -20,10 +20,10 @@
             </figure>
             <h2>Protein Bar</h2>
             <p>High protein, low sugar.</p>
-            <p>Price : <span class = "bar_price">50</span></p>
+            <p>Price : <span id = "bar_price">50</span></p>
             <label for="bar_quantity">Quantity : </label>
             <input type="number" id = "bar_quantity" name="bar_quantity" min="1" max="10" value="1">
-            <button onclick="placeOrder('Protein Bar')">Place Order</button>
+            <button onclick="placeOrder('Protein Bar' , event)">Place Order</button>
         </div>
         <div class="product-card">
             <figure>
@@ -31,20 +31,21 @@
             </figure>
             <h2>Smoothie</h2>
             <p>Full of vitamins and fiber.</p>
-            <p>Price : <span class = "smooth_price">50</span></p>
+            <p>Price : <span id = "smooth_price">50</span></p>
             <label for="smooth_quantity">Quantity : </label>
             <input type="number" id = "smooth_quantity" name="smooth_quantity" min="1" max="10" value="1">
-            <button onclick="placeOrder('Smoothie')">Place Order</button>
+            <button onclick="placeOrder('Smoothie' , event)">Place Order</button>
         </div>
         <div class="product-card">
             <figure>
                 <img src="{{url_for('static' , filename = 'images/energy_bite.png')}}" alt="">
+            </figure>
             <h2>Energy Balls</h2>
             <p>Perfect for pre-workout snacks.</p>
-            <p>Price : <span class = "balls_price">50</span></p>
+            <p>Price : <span id = "balls_price">50</span></p>
             <label for="balls_quantity">Quantity : </label>
             <input type="number" id = "balls_quantity" name="balls_quantity" min="1" max="10" value="1">
-            <button onclick="placeOrder('Energy Balls')">Place Order</button>
+            <button onclick="placeOrder('Energy Balls' , event)">Place Order</button>
         </div>
     </main>
 

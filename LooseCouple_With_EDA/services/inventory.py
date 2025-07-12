@@ -2,7 +2,7 @@ from kafka import KafkaConsumer
 import json
 import os
 
-ITEM_FILE = os.path.join(os.path.dirname(__file__), 'items_db/items.json')
+ITEM_FILE = os.path.join(os.path.dirname(__file__), '../../items_db/items.json')
 
 
 def load_items():
